@@ -5,7 +5,7 @@
 
 	<groupId>com.demo</groupId>
 	<artifactId>demo-libs</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.v4</version>
 	<name>demo-libs</name>
 	<packaging>jar</packaging>
 	<description>Demo project for Spring Boot Libs</description>
