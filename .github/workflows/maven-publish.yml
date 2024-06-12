@@ -40,7 +40,7 @@ jobs:
         package-name: com.demo.demo-libs-test
         # Type of package. Can be one of container, maven, npm, nuget, or rubygems.
     
-        package-type:  1
+        package-type:  'maven'
         # Number of versions to delete starting with the oldest version. Defaults to 1.
     
         num-old-versions-to-delete: 1
