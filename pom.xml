@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.demo</groupId>
-	<artifactId>demo-libs</artifactId>
+	<artifactId>demo-libs-test</artifactId>
 	<version>0.0.v6</version>
 	<name>demo-libs</name>
 	<packaging>jar</packaging>
