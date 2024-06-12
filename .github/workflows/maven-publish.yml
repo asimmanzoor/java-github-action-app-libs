@@ -42,12 +42,6 @@ jobs:
     
         package-type:  'maven'
         # Number of versions to delete starting with the oldest version. Defaults to 1.
-    
-        num-old-versions-to-delete: 1
-        # Number of versions to keep starting with the latest version By default keeps no version. To delete all versions set this as 0.
-    
-        min-versions-to-keep:  -1
-        # Regex pattern for package versions to ignore. Defaults to delete all versions.
         token: ${{ secrets.MVN_PKG_UPLOAD }}
 
     - name: Build with Maven
