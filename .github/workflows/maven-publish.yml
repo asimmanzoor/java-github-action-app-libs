@@ -50,10 +50,10 @@ jobs:
 
 
     - name: Generate artifact attestation
-      #uses: actions/attest-build-provenance@v1.3.2
-      uses: actions/attest@v1.3.2
+      uses: actions/attest-build-provenance@v1.3.2
+      #uses: actions/attest@v1.3.2
       with:
-        #subject-name: ${{ steps.extract.outputs.artifact-id}}
+        subject-name: ${{ steps.extract.outputs.artifact-id}}
         subject-path: ./target/${{ steps.extract.outputs.artifact-id}}-${{ steps.extract.outputs.version }}.jar
         #subject-digest: ${{ steps.maven-deploy.outputs.digest }}
         #push-to-registry: true          
