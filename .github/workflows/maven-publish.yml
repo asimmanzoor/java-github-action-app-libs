@@ -16,6 +16,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+      attestations: write
+      id-token: write
 
     steps:
     - uses: actions/checkout@v4
@@ -27,6 +29,17 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
    
+    - name: Extract pom details
+      id: extract
+      uses: andreacomo/maven-gav-extractor@v2.0.1
+    - name: Log GAV
+      run: |
+        echo ${{ steps.extract.outputs.group-id }}
+        echo ${{ steps.extract.outputs.artifact-id }}
+        echo ${{ steps.extract.outputs.version }}
+        echo ${{ steps.extract.outputs.name }}
+      shell: bash
+    
     - name: Build with Maven
       run: mvn -DskipTests=true -B package --file pom.xml
 
@@ -34,3 +47,12 @@ jobs:
       run: mvn -DskipTests=true deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
         GITHUB_TOKEN: ${{ secrets.MVN_PKG_UPLOAD }}
+
+
+    - name: Generate artifact attestation
+      uses: actions/attest-build-provenance@v1.3.2
+      with:
+        subject-name: ${{  steps.lower-repo.outputs.githubowner }}/${{ steps.extract.outputs.artifact-id}}
+        subject-path: ./target/${{ steps.extract.outputs.artifact-id}}-${{ steps.extract.outputs.version }}.jar
+        #subject-digest: ${{ steps.maven-deploy.outputs.digest }}
+        push-to-registry: true          
