@@ -53,6 +53,6 @@ jobs:
       uses: actions/attest-build-provenance@v1.3.2
       with:
         #subject-name: ${{  steps.lower-repo.outputs.githubowner }}/${{ steps.extract.outputs.artifact-id}}
-        subject-path: ./target/**
+        subject-path: ./target/${{ steps.extract.outputs.artifact-id}}-${{ steps.extract.outputs.version }}.jar
         #subject-digest: ${{ steps.maven-deploy.outputs.digest }}
         #push-to-registry: true          
